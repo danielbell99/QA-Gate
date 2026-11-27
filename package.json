@@ -1,0 +1,18 @@
+{
+  "name": "qa-gate",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.21.0 <25"
+  },
+  "scripts": {
+    "hooks:install": "node scripts/install-hooks.mjs",
+    "prepare": "npm run hooks:install",
+    "lint": "node --check scripts/install-hooks.mjs && node --check tests/hooks.test.mjs",
+    "test": "node --test tests/hooks.test.mjs",
+    "test:integration": "node --test tests/hooks.test.mjs",
+    "check:fast": "npm run lint && npm test",
+    "check": "npm run check:fast && npm run test:integration && npm audit --audit-level=high"
+  }
+}
